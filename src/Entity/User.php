@@ -1,9 +1,11 @@
+<?php
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User
 {
@@ -15,19 +17,39 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", unique=true)
      */
-    private $username;
+    private $email;
 
     /**
      * @ORM\Column(type="string")
      */
     private $password;
+    
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
-    /**
-     * @ORM\Column(type="string", length=180, unique=true)
-     */
-    private $email;
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
 
-    // Getters and setters...
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+        return $this;
+    }
 }
